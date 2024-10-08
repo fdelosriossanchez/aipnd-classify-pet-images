@@ -73,15 +73,13 @@ def adjust_results4_isadog(results_dic, dogfile):
     with open(dogfile, "r") as f:
         line = f.readline()
         while line:
-            dog_breeds.extend([x.strip().replace(" ", "") for x in line.split(",")])
+            dog_breeds.extend([x.strip() for x in line.split(",")])
             line = f.readline()
 
-    for i in results_dic:
-        label = results_dic[i][0]
-        classification = [
-            x.lower().strip().replace(" ", "") for x in results_dic[i][1].split(",")
-        ]
+    for value in results_dic.values():
+        label = value[0]
+        classification = [x.lower().strip() for x in value[1].split(",")]
         dog1 = 1 if label in dog_breeds else 0
         dog2 = 1 if any(item in dog_breeds for item in classification) else 0
-        results_dic[i].append(dog1)
-        results_dic[i].append(dog2)
+        value.append(dog1)
+        value.append(dog2)

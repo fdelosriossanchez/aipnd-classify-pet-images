@@ -21,7 +21,7 @@ from os import listdir
 
 
 def filename2label(filename):
-    label = filename[0 : filename.rindex("_")].lower().replace("_", "")
+    label = filename[0 : filename.rindex("_")].lower().replace("_", " ")
 
     return label
 

@@ -34,7 +34,7 @@ from os import path
 
 
 def process_classification(lst, result):
-    labels = [x.strip().lower().replace(" ", "") for x in result.split(",")]
+    labels = [x.strip().lower() for x in result.split(",")]
     match = 1 if lst[0] in labels else 0
     lst.append(result)
     lst.append(match)

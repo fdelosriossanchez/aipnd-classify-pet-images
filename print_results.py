@@ -89,13 +89,13 @@ def print_results(
         print("\nINCORRECT Dog/NOT Dog Assignments:")
 
         # process through results dict, printing incorrectly classified dogs
-        for key in results_dic:
-            if results_dic[key][3] != results_dic[key][4]:
-                label = "a dog" if results_dic[key][3] == 1 else "not a dog"
-                classification = "A-DOG" if results_dic[key][4] == 1 else "NOT-A-DOG"
+        for value in results_dic.values():
+            if value[3] != value[4]:
+                label = "a dog" if value[3] == 1 else "not a dog"
+                classification = "A-DOG" if value[4] == 1 else "NOT-A-DOG"
                 print(
-                    "Pet Image {} is {} - Classified as {}".format(
-                        results_dic[key][0], label, classification
+                    "Pet Label: {:>21}   Classifier Label: {:>24}".format(
+                        value[0], value[1]
                     )
                 )
 
@@ -107,12 +107,8 @@ def print_results(
         print("\nINCORRECT Dog Breed Assignment:")
 
         # process through results dict, printing incorrectly classified breeds
-        for key in results_dic:
+        for value in results_dic.values():
 
             # Pet Image Label is-a-Dog, classified as-a-dog but is WRONG breed
-            if sum(results_dic[key][3:]) == 2 and results_dic[key][2] == 0:
-                print(
-                    "Real: {:>26}   Classifier: {:>30}".format(
-                        results_dic[key][0], results_dic[key][1]
-                    )
-                )
+            if sum(value[3:]) == 2 and value[2] == 0:
+                print("Real: {:>26}   Classifier: {:>30}".format(value[0], value[1]))
